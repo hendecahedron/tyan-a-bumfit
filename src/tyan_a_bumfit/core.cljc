@@ -112,10 +112,10 @@
 
 (def numbers-by-region
   (into {}
-    (map (juxt first (comp vec rest))
+    (map (juxt first (comp vec (partial cons 'nil) rest))
       (mapcat
        (fn [[h & n]]
-         (apply map vector (cons h (cons '(nil) (take-nth 2 (rest n))))))
+         (apply map vector (cons h (take-nth 2 (rest n)))))
        (remove
          (partial = '((Number)))
          (partition-by
