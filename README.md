@@ -1,14 +1,18 @@
 # tyan-a-bumfit
 
-A Clojure library designed to ... well, that part is up to you.
+Implementation of the Yan Tan Tethera number system
 
 ## Usage
 
 FIXME
 
+## Acknowledgements
+
+Warmest thanks to Yo for the idea
+
 ## License
 
-Copyright © 2016 FIXME
+Copyright © 2016 Matthew Chadwick
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
