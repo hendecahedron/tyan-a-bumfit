@@ -4,11 +4,14 @@ Implementation of the Yan Tan Tethera number system
 
 ## Usage
 
-FIXME
+```(map (numbers-by-region 'Coniston) '(2 7 1 8 2 8 1 8 2 8 4 5 9))```
+
+```=> (Taen Slaata Yan Lowra Taen Lowra Yan Lowra Taen Lowra Medderte Pimp Dowra)```
+
 
 ## Acknowledgements
 
-Warmest thanks to Yo for the idea
+Tedderte cheers to Yo Yehudi for the idea
 
 ## License
 
