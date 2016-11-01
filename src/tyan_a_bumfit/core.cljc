@@ -1,6 +1,8 @@
 (ns tyan-a-bumfit.core
   (:require
-    [clojure.string :as s]))
+    #?(:cljs [cljs.spec :as spec]
+       :clj  [clojure.spec :as spec])
+    [clojure.string :as string]))
 
 (def yan     1)
 (def tyan    2)
@@ -38,12 +40,25 @@
           Wilts                [nil ain tain tethera methera mimp ayta slayta laura dora dik ain-a-dik tain-a-dik tethera-a-dik methera-a-dik mit ain-a-mit tain-a-mit tethera-mit gethera-mit ghet]
           )))))
 
+(def regions
+  (into #{} (keys cardinal-by-region)))
+
+(def ranges
+  (into {}
+    (map
+      (juxt key (comp count (partial take-while identity) rest val))
+      cardinal-by-region)))
+
 (def number-of
   (reduce
     (fn [r n]
       (into r (map vector n (range))))
     {}
     (vals cardinal-by-region)))
+
+(defn cardinal-of
+  [region n]
+    ((cardinal-by-region region) n))
 
 (defn convert [cardinal region]
   ((cardinal-by-region region) (number-of cardinal)))
@@ -58,11 +73,37 @@
   {} cardinal-by-region))
 
 (defn floor [x]
-  #?(:cljs (.floor js/Math (double x)) :clj (Math/floor (double x))))
+  #?(:cljs (long (.floor js/Math (double x))) :clj (long (Math/floor (double x)))))
 
-(defn pad [l] (apply max (map (comp count name) l)))
+(defn as-exp
+  ([n i]
+   (if (< i n)
+     i
+     (as-exp n i (floor (/ i n)))))
+  ([n i m]
+    (as-exp n i m (- i (* n m))
+      (if (== 1 m) n (list '* n (as-exp n m)))))
+  ([n i m r y]
+   (if (== 0 r)
+    y
+    (list '+ r y))))
 
-(defn padding [p x] (apply str (repeat (- p (count (name x))) " ")))
+(defn say
+  ([region i]
+   (if (<= i (ranges region))
+     ((cardinal-by-region region) i)
+     (say (cardinal-by-region region) (ranges region) (as-exp (ranges region) i))))
+  ([cardinal n [op r m]]
+    (if (number? m)
+      (if (= '+ op)
+        (str (cardinal r) " and " (cardinal m))
+        (str (cardinal m) " " (cardinal r)))
+     (if (= op '+)
+       (str (cardinal r) " and "
+         (say cardinal n m))
+       (str (say cardinal n m) " " (cardinal n))))))
 
+;(defn pad [l] (apply max (map (comp count name) l)))
+;(defn padding [p x] (apply str (repeat (- p (count (name x))) " ")))
 ; (spit "./src/tyan_a_bumfit/cardinals.cljc" (apply str "(ns tyan-a-bumfit.cardinals)\n\n" (mapcat (fn [i] (map (fn [v] (str "(def " v " " i ")\n")) (remove nil? (vals (cardinals i))))) (range 1 21))))
 ; (let [p (pad (keys by-region))] (doall (map (fn [[k v]] (println k (padding p k) (map (fn [t] (if t (s/lower-case (name t)))) v))) (sort-by key by-region))) 'bumfit)
