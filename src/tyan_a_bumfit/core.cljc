@@ -4,6 +4,8 @@
        :clj  [clojure.spec :as spec])
     [clojure.string :as string]))
 
+#?(:cljs (enable-console-print!))
+
 (def yan     1)
 (def tyan    2)
 (def tethera 3)
@@ -77,9 +79,11 @@
 
 (defn xp
   ([n i]
-   (if (< i n)
-     i
-     (xp n i (floor (/ i n)))))
+   (if (== n 1)
+      (cons '+ (repeat i 1))
+    (if (< i n)
+      i
+      (xp n i (floor (/ i n))))))
   ([n i m]
     (xp n i m (- i (* n m))
       (if (== 1 m) n (list '* n (xp n m)))))
@@ -88,16 +92,16 @@
     y
     (list '+ r y))))
 
-(defn say
+(defn description
   ([region i]
    (if (<= i (ranges region))
      ((cardinal-by-region region) i)
-     (say (cardinal-by-region region) (ranges region) (xp (ranges region) i))))
+     (description (cardinal-by-region region) (ranges region) (xp (ranges region) i))))
   ([cardinal n [op r m]]
-    (if (number? m)
+    (if (list? m)
+      (if (= op '+)
+        (str (cardinal r) " and " (description cardinal n m))
+        (str (description cardinal n m) " " (cardinal n)))
       (if (= '+ op)
         (str (cardinal r) " and " (cardinal m))
-        (str (cardinal m) " " (cardinal r)))
-      (if (= op '+)
-        (str (cardinal r) " and " (say cardinal n m))
-        (str (say cardinal n m) " " (cardinal n))))))
+        (str (cardinal m) " " (cardinal r))))))

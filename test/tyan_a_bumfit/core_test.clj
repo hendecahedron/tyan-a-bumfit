@@ -1,7 +1,12 @@
 (ns tyan-a-bumfit.core-test
   (:require [clojure.test :refer :all]
-            [tyan-a-bumfit.core :refer :all]))
+            [tyan-a-bumfit.core :refer :all]
+            [com.gfredericks.seventy-one :refer [seventy-one]]))
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
+(deftest test-71
+  (testing "71"
+    (is
+      (and
+        (= seventy-one (eval (xp 20 seventy-one)))
+        (= seventy-one (eval (xp 10 seventy-one)))
+        (= seventy-one (eval (xp 3  seventy-one)))))))
