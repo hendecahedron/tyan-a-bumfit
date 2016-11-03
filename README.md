@@ -4,10 +4,15 @@ Implementation of the Yan Tan Tethera number system
 
 ## Usage
 
-```(map (numbers-by-region 'Coniston) '(2 7 1 8 2 8 1 8 2 8 4 5 9))```
+```(map (cardinal-by-region 'Coniston) '(2 7 1 8 2 8 1 8 2 8 4 5 9))```
 
 ```=> (Taen Slaata Yan Lowra Taen Lowra Yan Lowra Taen Lowra Medderte Pimp Dowra)```
 
+```(description 'Coniston 1132454311)```
+
+```=>```
+
+```"yan-a-dick and mimph and mimph and yan-a-mimph and taen-a-mimph and tedder-a-dick and taen-a-mimph gigget gigget gigget gigget gigget gigget"```
 
 ## Acknowledgements
 
