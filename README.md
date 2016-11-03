@@ -10,9 +10,8 @@ Implementation of the Yan Tan Tethera number system
 
 ```(description 'Coniston 1132454311)```
 
-```=>```
+```yan-a-dick and mimph and mimph and yan-a-mimph and taen-a-mimph and tedder-a-dick and taen-a-mimph gigget gigget gigget gigget gigget gigget```
 
-```"yan-a-dick and mimph and mimph and yan-a-mimph and taen-a-mimph and tedder-a-dick and taen-a-mimph gigget gigget gigget gigget gigget gigget"```
 
 ## Acknowledgements
 
