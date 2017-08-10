@@ -1,4 +1,4 @@
-(defproject tyan-a-bumfit "1.0.0"
+(defproject tyan-a-bumfit "yan.tan.tethera"
   :description "Implementation of the Yan Tan Tethera sheep-counting system"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
