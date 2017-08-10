@@ -1,10 +1,4 @@
-(ns tyan-a-bumfit.core
-  (:require
-    #?(:cljs [cljs.spec :as spec]
-       :clj  [clojure.spec :as spec])
-    [clojure.string :as string]))
-
-#?(:cljs (enable-console-print!))
+(ns tyan-a-bumfit.core)
 
 (def yan     1)
 (def tyan    2)
@@ -75,7 +69,8 @@
   {} cardinal-by-region))
 
 (defn floor [x]
-  #?(:cljs (long (.floor js/Math (double x))) :clj (long (Math/floor (double x)))))
+  #?(:cljs (long (.floor js/Math (double x)))
+     :clj  (long (Math/floor (double x)))))
 
 (defn xp
   ([n i]
