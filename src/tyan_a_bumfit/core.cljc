@@ -68,17 +68,13 @@
          r (map vector (range) numbers)))
   {} cardinal-by-region))
 
-(defn floor [x]
-  #?(:cljs (long (.floor js/Math (double x)))
-     :clj  (long (Math/floor (double x)))))
-
 (defn xp
   ([n i]
    (if (== n 1)
       (cons '+ (repeat i 1))
     (if (< i n)
       i
-      (xp n i (floor (/ i n))))))
+      (xp n i (int (Math/floor (/ i n)))))))
   ([n i m]
     (xp n i m (- i (* n m))
       (if (== 1 m) n (list '* n (xp n m)))))
@@ -88,6 +84,8 @@
     (list '+ r y))))
 
 (defn description
+  "Returns the text description of
+  number i for the given region"
   ([region i]
    (if (<= i (ranges region))
      ((cardinal-by-region region) i)

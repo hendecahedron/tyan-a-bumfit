@@ -4,8 +4,6 @@ Implementation of the Yan Tan Tethera number system
 
 ## Usage
 
-```[tyan-a-bumfit "yan.tan.tethera"]```
-
 ```(map (cardinal-by-region 'Coniston) '(2 7 1 8 2 8 1 8 2 8 4 5 9))```
 
 ```=> (Taen Slaata Yan Lowra Taen Lowra Yan Lowra Taen Lowra Medderte Pimp Dowra)```
